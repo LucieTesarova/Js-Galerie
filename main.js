@@ -61,7 +61,7 @@ const sipkaVpravo = document.querySelector(".sipka:last-child");
 const pocitadlo = document.querySelector("#pocitadlo");
 
 let aktualniPoziceFota = 0;
-let predchoziPozice = -1;
+let predchoziPozice = 0;
 foto.src = `obrazky/${obrazky[aktualniPoziceFota]}`;
 
 vytvorMiniGalerii();
