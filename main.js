@@ -61,39 +61,58 @@ const sipkaVpravo = document.querySelector(".sipka:last-child");
 const pocitadlo = document.querySelector("#pocitadlo");
 
 let aktualniPoziceFota = 0;
+let predchoziPozice = -1;
 foto.src = `obrazky/${obrazky[aktualniPoziceFota]}`;
-aktualizujText();
 
 vytvorMiniGalerii();
+aktualizujText();
+upravSipky();
 zvyrazni();
 
 sipkaVpravo.addEventListener("click", function(){
-    let predchoziPozice = aktualniPoziceFota;
+    predchoziPozice = aktualniPoziceFota;
     aktualniPoziceFota++;
     if(aktualniPoziceFota >= obrazky.length){
         aktualniPoziceFota = 0;
     }
     foto.src = `obrazky/${obrazky[aktualniPoziceFota]}`;
-    aktualizujText();
-    zvyrazni();
-    odeberZvyrazneni(predchoziPozice);
+    upravStyly();
 });
 
 sipkaVlevo.addEventListener("click", function(){
-    let predchoziPozice = aktualniPoziceFota;
+    predchoziPozice = aktualniPoziceFota;
     aktualniPoziceFota--;
     if(aktualniPoziceFota < 0){
         aktualniPoziceFota = obrazky.length-1;
     }
     foto.src = `obrazky/${obrazky[aktualniPoziceFota]}`;
+    upravStyly();
+});
+
+function upravStyly(){
     aktualizujText();
+    upravSipky();
     zvyrazni();
     odeberZvyrazneni(predchoziPozice);
-});
+};
 
 function aktualizujText(){
     pocitadlo.textContent = `${obrazky[aktualniPoziceFota]} - ${aktualniPoziceFota+1}/${obrazky.length}`;
 };
+
+function upravSipky(){
+    if(aktualniPoziceFota === 5){
+        sipkaVpravo.src = `obrazky/${obrazky[0]}`;
+    }else{
+        sipkaVpravo.src = `obrazky/${obrazky[aktualniPoziceFota+1]}`;
+    }
+
+    if(aktualniPoziceFota === 0){
+        sipkaVlevo.src = `obrazky/${obrazky[obrazky.length-1]}`;
+    }else{
+        sipkaVlevo.src = `obrazky/${obrazky[aktualniPoziceFota-1]}`;
+    }
+}
 
 function vytvorMiniGalerii(){
     const miniGalerie = document.querySelector(".mini-galerie");
