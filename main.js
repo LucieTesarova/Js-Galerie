@@ -71,12 +71,7 @@ function vytvorMiniGalerii(){
     const miniGalerie = document.querySelector(".mini-galerie");
 
     for(let i =0; i <obrazky.length; i++){
-        const miniObrazek = document.createElement("img");
-        miniObrazek.src = `obrazky/${obrazky[i]}`;
-        miniObrazek.width= 100;
-        const li = document.createElement("li");
-        li.appendChild(miniObrazek);
-        miniGalerie.appendChild(li); 
+        miniGalerie.innerHTML += "<li><img src=" + 'obrazky/' + obrazky[i] + " width=100" + "></li>"
     }
 };
 
